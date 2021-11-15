@@ -13,20 +13,20 @@ tags: [Github Pages, How-To]
 
 Github 에서 저장소를 만드는 방법부터 소개하겠습니다. 
 
-![Step One]({{site.baseurl}}/assets/img/how-to-create-a-repo.jpg)
+![Step One]({{site.baseurl}}/assets/img/how-to-create-a-repo.png)
 
 우측에 초록색으로 `New` 라고 되어 있는 버튼을 클릭하면 새로운 저장소를 생성 할 수 있습니다. 
 
 해당 버튼을 누르게 되면 아래처럼 생성하는 페이지가 나오게 됩니다. 
 
-![Step Two]({{site.baseurl}}/assets/img/how-to-create-a-repo-2.jpg)
+![Step Two]({{site.baseurl}}/assets/img/how-to-create-a-repo-2.png)
 
 새로운 저장소의 이름을 작성해야 하는데, `{github 계정}.github.io` 으로 이름을 지어주어야 해당 url 이 생성 될 수 있습니다.
 
 저는 이미 생성한 저장소가 있어서 불가 하다고 뜨지만 처음 진행하는 것이면 문제 없이 진행할 수 있습니다.
 
 
-![Step Three]({{site.baseurl}}/assets/img/how-to-create-a-repo-3.jpg)
+![Step Three]({{site.baseurl}}/assets/img/how-to-create-a-repo-3.png)
 
 ``` bash
 git clone https://github.com/{github 계정}/{github 계정}.github.io.git
@@ -40,7 +40,7 @@ git clone https://github.com/{github 계정}/{github 계정}.github.io.git
 저는 구글링으로 `https://jekyllthemes.io/github-pages-themes` 사이트에 있는 무료 템플릿을 사용했습니다.
 마음에 드는 템플릿을 선택한 후 해당 템플릿의 깃허브 저장소를 포크한 후 로컬에 클론하면 됩니다. 
 
-![Step Four]({{site.baseurl}}/assets/img/fork-template.jpg)
+![Step Four]({{site.baseurl}}/assets/img/fork-template.png)
 
 우측 상단에 있는 `Fork` 버튼을 누르고 자신의 깃허브로 옮긴 후,
 
@@ -61,7 +61,7 @@ cd ../{github 계정}.github.io
 
 이렇게 모든 요소들을 옮긴 후 `ls` 명령어로 확인을 하면 
 
-![ls result]({{site.baseurl}}/assets/img/ls-result.jpg)
+![ls result]({{site.baseurl}}/assets/img/ls-result.png)
 
 템플릿 활용에 필요한 파일들이 github.io 디렉토리로 이동한 것을 확인할 수 있습니다.
 
@@ -97,7 +97,7 @@ git push -u origin master
 [이 링크](https://jekyllrb.com/docs/configuration/) 를 참고하면 자세한 사항을 알 수 있습니다.
 
 
-![config file]({{site.baseurl}}/assets/img/config-file.jpg)
+![config file]({{site.baseurl}}/assets/img/config-file.png)
 
 여기서 참고 할 내용은 `title`, `baseurl` 입니다. 
 
