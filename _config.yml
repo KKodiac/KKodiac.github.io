@@ -5,7 +5,7 @@ description: > # this means to ignore newlines until "baseurl:"
   deeply into Backend development and DevOps. I'm very excited, thankful
   to be a part of the generation that can bring changes to the world with code.
 permalink: ':title/'
-baseurl: "/blog" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 site-twitter: #if your site has a twitter account, enter it here
 
