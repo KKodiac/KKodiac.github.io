@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>My Ubuntu Setup - Hello World! I'm Sean Hong</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="Hello World! I'm Sean Hong" property="og:site_name">
+  
+    <meta content="My Ubuntu Setup" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="개인적으로 우분투 설정할 때 깔아주는 것들을 정리해 봤습니다." property="og:description">
+  
+  
+    <meta content="http://localhost:4000/my-ubuntu-setup/" property="og:url">
+  
+  
+    <meta content="2021-11-16T00:00:00+09:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
+  
+  
+    <meta content="http://localhost:4000/assets/img/ubuntu.jpg" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="Productivity" property="article:tag">
+    
+    <meta content="Ubuntu" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="My Ubuntu Setup">
+  
+  
+    <meta name="twitter:url" content="http://localhost:4000/my-ubuntu-setup/">
+  
+  
+    <meta name="twitter:description" content="개인적으로 우분투 설정할 때 깔아주는 것들을 정리해 봤습니다.">
+  
+  
+    <meta name="twitter:image:src" content="http://localhost:4000/assets/img/ubuntu.jpg">
+  
+
+	<meta name="description" content="개인적으로 우분투 설정할 때 깔아주는 것들을 정리해 봤습니다.">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-touch-icon-144x144.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700|Lato:300,400,700&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/me_profile.jpeg" alt="Sean Hong(홍성민)"></a>
+      </div>
+      <div class="author-name">Sean Hong(홍성민)</div>
+      <p>I'm a CS student from South Korea focusing my studies more into backend developement.</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+        
+          <li><a href="https://twitter.com/artemsheludko_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        
+        
+          <li><a href="https://facebook.com/sean.hong.750" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="github"><a href="http://github.com/KKodiac" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/in/sean-hong-47b977170" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        
+        
+          <li class="email"><a href="mailto:seanhong2000@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+        
+      </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2021 &copy; Sean Hong(홍성민)</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="page-cover-image">
+      <figure>
+        <img class="page-image" src=/assets/img/ubuntu.jpg alt="My Ubuntu Setup">
+        
+      </figure>
+    </div> <!-- End Page Cover Image -->
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">My Ubuntu Setup</h1>
+        <div class="page-date"><span>2021, Nov 16&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>Windows를 데스크톱으로 사용하면서 개발 공부는 WSL을 활용했지만, 이런 저런 것들이 불편하기도 하고, Windows 로 사용하다가 게임에 한눈 판적이 한두번이 아니기에 아에 이번에 Ubuntu Distro 로 듀얼 부팅 세업으로 옮겼다.</p>
+
+<p>확실히 데스크톱을 껐다 키는 것이 귀찮아서 그런지 게임하는 것도 줄고 한눈 파는 일이 적어진 것 같은데, 이번 이렇게 옮긴 후 Ubuntu 설정하면서 깔아준 것들을 정리해보려고 한다.</p>
+
+<p>쓸모 없는 클러터가 깔아지는 것을 방지하기 위해서 minimal install 을 해서 깔끔하게 유지할 순 있지만 필요한 것들을 깔아야되서 귀찮다.</p>
+
+<p>그래서 혹시 모를 사태를 대비해서 미리 정리 해두려고 한다.</p>
+
+<h2 id="icloud-linux">ICloud Linux</h2>
+<ul>
+  <li><a href="https://snapcraft.io/install/icloud-for-linux/ubuntu">iCloud Snap Store</a>
+    <ul>
+      <li>맥북이랑 생각보다 괜찮게 된다</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="visual-studio-code">Visual Studio Code</h2>
+<ul>
+  <li><a href="https://code.visualstudio.com/">VS Code</a>
+    <ul>
+      <li>Snap 으로 깔아도 되지만 한글 지원이 안되는 오류가 있는걸로 알고 있어서 공홈(?) 에서 다운로드 받아서 <code class="language-plaintext highlighter-rouge">dpkg -i</code> 로 깔아주는게 낫다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="terminal-theme">Terminal Theme</h2>
+<ul>
+  <li><a href="https://draculatheme.com/terminal">Dracula</a></li>
+</ul>
+
+<h2 id="software-for-studies">Software for Studies</h2>
+<ul>
+  <li><a href="https://www.anaconda.com/products/individual">Anaconda</a></li>
+  <li><a href="https://docs.docker.com/engine/install/ubuntu/">Docker</a></li>
+  <li>NASM</li>
+  <li>Golang</li>
+  <li>Android Studio</li>
+  <li>Flutter</li>
+  <li>MongoDB
+ 등등</li>
+</ul>
+
+<h2 id="oh-my-bash">Oh-My-Bash</h2>
+<ul>
+  <li><a href="https://github.com/ohmybash/oh-my-bash">oh-my-bash</a>
+    <ul>
+      <li>개인적으로 <code class="language-plaintext highlighter-rouge">agnoster</code> 테마가 맞는거 같다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="vim">Vim</h2>
+<ul>
+  <li><a href="https://github.com/KKodiac/vimrc/tree/master">Vimrc</a></li>
+</ul>
+
+<h2 id="apt-packages">Apt Packages</h2>
+<ul>
+  <li>bat(batcat)
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">cat</code> 명령어의 상위 호환</li>
+    </ul>
+  </li>
+  <li>neofetch
+    <ul>
+      <li>그냥 시스템 확인 용도 <code class="language-plaintext highlighter-rouge">lolcat</code> 이랑 사용하면 예쁘다 ㅎ</li>
+    </ul>
+  </li>
+  <li>nvm
+    <ul>
+      <li>npm 버전 매니저, NodeJS 는 언젠가 공부할 거 같아서 미리 깔아뒀다.</li>
+    </ul>
+  </li>
+  <li>dpkg
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">wget</code>으로 다운로드 받은 파일들을 <code class="language-plaintext highlighter-rouge">dpkg</code> 로 설치하렸는데 minimal installation으로 하면 같이 안딸려온다</li>
+    </ul>
+  </li>
+  <li>net-tools
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ifconfig</code> 쓰려고 설치, 다른 명령어는 모름</li>
+    </ul>
+  </li>
+  <li>htop
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">top</code> 상위호환</li>
+    </ul>
+  </li>
+  <li>vim
+    <ul>
+      <li>그냥 <code class="language-plaintext highlighter-rouge">nano</code> 보다 많이 써서 터미널에서 편해짐</li>
+    </ul>
+  </li>
+  <li>openssh-server
+    <ul>
+      <li>맥북프로에서 <code class="language-plaintext highlighter-rouge">ssh</code> 접속 필요 시</li>
+    </ul>
+  </li>
+</ul>
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=My Ubuntu Setup&url=http://localhost:4000/my-ubuntu-setup/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/my-ubuntu-setup/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/my-ubuntu-setup/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#Productivity" class="tag">&#35; Productivity</a>
+          
+            <a href="/tags#Ubuntu" class="tag">&#35; Ubuntu</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+    <div id="disqus_thread" class="article-comments"></div>
+    <script>
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//mr-brown.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>
