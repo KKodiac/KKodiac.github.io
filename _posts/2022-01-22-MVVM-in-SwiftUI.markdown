@@ -9,7 +9,7 @@ tags: [Swift, SwiftUI, iOS, MVVM]
 ---
 # SwiftUI 에서의 MVVM
 
-![MVVM-Simple]({{site.baseurl}}/assets/img/mvvm-simple-flow.png)
+![MVVM-Simple]({{site.baseurl}}/assets/img/mvvm-simple-flow.jpeg)
 
 ## Model-View-ViewModel
 
@@ -75,7 +75,7 @@ tags: [Swift, SwiftUI, iOS, MVVM]
     2. ViewModel 에서 의도된 Intent 에 따라서 Model 수정
     3. Model 이 수정 됨에 따라 다시 위의 Model → ViewModel → View 이벤트 발생
 
-![MVVM-Detail]({{site.baseurl}}/assets/img/mvvm-detail-flow.png)
+![MVVM-Detail]({{site.baseurl}}/assets/img/mvvm-detail-flow.jpeg)
 
 > **Simplicity and Declarability 를 지키기 위해 유용하다.**
 
