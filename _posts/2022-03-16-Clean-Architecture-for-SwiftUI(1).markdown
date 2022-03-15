@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Clean Architecture for SwiftUI[1]
+title: Clean Architecture for SwiftUI(1)
 date: 2022-03-16 05:38:00 +0900
 description: SwiftUI 를 위한 클린 아키텍쳐  # Add post description (optional)
 img: swift-logo.png # Add image post (optional)
