@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Clean Architecture for SwiftUI[1]
-date: 2022-03-16 05:38:00 +0900
+title: Clean Architecture for SwiftUI(1)
+date: 2022-03-15 05:38:00 +0900
 description: SwiftUI 를 위한 클린 아키텍쳐  # Add post description (optional)
-img: swift-logo.png # Add image post (optional)
+img: clean-swift.png # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [Swift, SwiftUI, iOS, MVVM, CleanArchitecture]
 ---
@@ -79,8 +79,11 @@ extension CountriesList {
  - [4] `View`에서는 지속적으로 `@ObsesrvedObject`로 지정된 객체를 관찰하고 있는데, [3]으로 인해 `countries` 변수의 값이 업데이트 되고 `ViewModel`은 `@Published countries`라는 변수를 통해 업데이트를 `View`에 알리게 된다. 
  - [5] 변경된 내용이 해당되는 `View`만 업데이트 하여 보여주게 된다.
 
- ## 마치며 
+
+## 마치며 
+
  아직 커버할 내용이 많은 것은 알고 있다. 아직도 너무 많은 것들을 모르고 있어서 조바심이 많이나지만 이번 글의 내용을 정리하면서  기본적으로 SwiftUI가 MVVM 구조를 통해 작동하는 법은 이해한 것 같다. 다음 글에는 참조글에서 얘기하는 `AppState`, `View`, `Interactor`, `Repository`의 정의와 내용을 알아보면서 더 자세한 SwiftUI 내에서의 클린 아키텍쳐를 정리해보겠다.
 
- ## Reference Article
+## Reference Article
+
  [Clean Architecture for SwiftUI](https://nalexn.github.io/clean-architecture-swiftui/) By Alexey Naumov

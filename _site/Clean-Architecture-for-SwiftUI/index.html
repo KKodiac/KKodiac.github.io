@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Clean Architecture for SwiftUI(1) - Hello World! I'm Sean Hong</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="Hello World! I'm Sean Hong" property="og:site_name">
+  
+    <meta content="Clean Architecture for SwiftUI(1)" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="SwiftUI 를 위한 클린 아키텍쳐" property="og:description">
+  
+  
+    <meta content="http://localhost:4000/Clean-Architecture-for-SwiftUI/" property="og:url">
+  
+  
+    <meta content="2022-03-15T05:38:00+09:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
+  
+  
+    <meta content="http://localhost:4000/assets/img/clean-swift.png" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="Swift" property="article:tag">
+    
+    <meta content="SwiftUI" property="article:tag">
+    
+    <meta content="iOS" property="article:tag">
+    
+    <meta content="MVVM" property="article:tag">
+    
+    <meta content="CleanArchitecture" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="Clean Architecture for SwiftUI(1)">
+  
+  
+    <meta name="twitter:url" content="http://localhost:4000/Clean-Architecture-for-SwiftUI/">
+  
+  
+    <meta name="twitter:description" content="SwiftUI 를 위한 클린 아키텍쳐">
+  
+  
+    <meta name="twitter:image:src" content="http://localhost:4000/assets/img/clean-swift.png">
+  
+
+	<meta name="description" content="SwiftUI 를 위한 클린 아키텍쳐">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-touch-icon-144x144.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700|Lato:300,400,700&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/me_profile.jpeg" alt="Sean Hong(홍성민)"></a>
+      </div>
+      <div class="author-name">Sean Hong(홍성민)</div>
+      <p>I'm a CS student from South Korea focusing my studies more into backend developement.</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+        
+          <li><a href="https://twitter.com/artemsheludko_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        
+        
+          <li><a href="https://facebook.com/sean.hong.750" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="github"><a href="http://github.com/KKodiac" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/in/sean-hong-47b977170" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        
+        
+          <li class="email"><a href="mailto:seanhong2000@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+        
+      </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2022 &copy; Sean Hong(홍성민)</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="page-cover-image">
+      <figure>
+        <img class="page-image" src=/assets/img/clean-swift.png alt="Clean Architecture for SwiftUI(1)">
+        
+      </figure>
+    </div> <!-- End Page Cover Image -->
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Clean Architecture for SwiftUI(1)</h1>
+        <div class="page-date"><span>2022, Mar 15&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <h1 id="clean-architecture-for-swiftui">Clean Architecture for SwiftUI</h1>
+<p>IOS 개발에 대해서 전반적으로 알아보던 중 토이 프로젝트를 진행하기로 마음 먹었다. 일단 stacklounge 의 백엔드를 활용해 보고자 해서 기존 Android 로 개발 했었던 기능들을 그대로 IOS 의 SwiftUI 로 구현해보자는 생각으로 시작했다.</p>
+
+<p>하지만 맨땅의 헤딩 식으로 진행 하기보다는 조금 더 Swift 라는 언어와 애플에서 최근 UIKit을 뒤로 하고 새로 밀고 있는 SwiftUI 라는 IOS Framework 에 대해서 조금 더 알아보기로 했다. 저번 글에서 SwiftUI 가 사용하는 MVVM 구조에 대해서 조금 알아보았지만, 그것을 적용한 SwiftUI 가 추구하는 클린 아키텍쳐에 대해서 조금 더 알아보다 찾은 <a href="https://nalexn.github.io/clean-architecture-swiftui/">블로그</a> 를 참고해 공부한 내용을 적어보도록 하겠다.</p>
+
+<p>한글 번역을 진행한 <a href="https://gon125.github.io/posts/SwiftUI를-위한-클린-아키텍처/">블로그</a>도 있다.</p>
+
+<h2 id="swiftui--mvvm">SwiftUI == MVVM?</h2>
+<p>SwiftUI 는 MVVM 구조를 기반으로 설계 되었다. MVVM 구조는 프레젠테이션 계층을 담당하는 View, 데이터 액세스를 담당하는 Model 과 그 사이 비지니스 로직을 담당하는 ModelView 간의 연결을 의미한다.</p>
+
+<p>소프트웨어공학을 다룬 수업 시간에 <code class="language-plaintext highlighter-rouge">결합도는 낮게, 응집도는 높게</code> 프로그램의 요소들을 구성해야 유지보수성이 높은 소프트웨어를 만들 수 있다고 배운 것이 생각이 났다. MVVM 처럼 구성하면
+[<code class="language-plaintext highlighter-rouge">Presentation</code>] - [<code class="language-plaintext highlighter-rouge">Business Logic</code>] - [<code class="language-plaintext highlighter-rouge">Data Access</code>] 이 세개의 층을 결합도가 낮게 설계 할 수 있다.</p>
+
+<p>SwiftUI에서는 간단한 상황에서는 <code class="language-plaintext highlighter-rouge">@State</code>을, 더 복잡한 상황에서는 <code class="language-plaintext highlighter-rouge">ObservableObject</code>를 View가 참조하여 ViewModel의 개념으로 사용하게 된다. 해당 ModelView 값에 변화가 일어날 시 이것을 View에서 <code class="language-plaintext highlighter-rouge">@ObservedObject</code>로 계속 주시하고 있다가 ModelView에서 <code class="language-plaintext highlighter-rouge">@Published</code> 호출이 왔을 때 View를 해당 데이터로 업데이트 하게 된다.</p>
+
+<p>참조하고 있는 블로그에 있는 코드를 예시로 들어보겠다.</p>
+
+<p><strong>Model</strong>: a data container</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Country</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>View</strong>: a SwiftUI view</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">CountriesList</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    
+    <span class="kd">@ObservedObject</span> <span class="k">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="kt">ViewModel</span>
+    
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">List</span><span class="p">(</span><span class="n">viewModel</span><span class="o">.</span><span class="n">countries</span><span class="p">)</span> <span class="p">{</span> <span class="n">country</span> <span class="k">in</span>
+            <span class="kt">Text</span><span class="p">(</span><span class="n">country</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="o">.</span><span class="n">onAppear</span> <span class="p">{</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">viewModel</span><span class="o">.</span><span class="nf">loadCountries</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>ViewModel</strong>: <code class="language-plaintext highlighter-rouge">ObservableObject</code>로 비지니스 로직을 캡슐화 시키고 View가 해당 변수의 상태를 관찰할 수 있도록 돕는다</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">CountriesList</span> <span class="p">{</span>
+    <span class="kd">class</span> <span class="kt">ViewModel</span><span class="p">:</span> <span class="kt">ObservableObject</span> <span class="p">{</span>
+        <span class="kd">@Published</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">countries</span><span class="p">:</span> <span class="p">[</span><span class="kt">Country</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="kd">private</span> <span class="k">let</span> <span class="nv">service</span><span class="p">:</span> <span class="kt">WebService</span>
+        
+        <span class="kd">func</span> <span class="nf">loadCountries</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">service</span><span class="o">.</span><span class="n">getCountries</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">result</span> <span class="k">in</span>
+                <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">countries</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">value</span> <span class="p">??</span> <span class="p">[]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위 코드의 동작을 다이어그램으로 표시해 보았다. 데이터 액세스는 서비스인 WebService에서 호출되는 외부 API 저장소겠지만 Model 코드로 대체했다.</p>
+
+<p><img src="/assets/img/mvvm-example1.jpg" alt="MVVM Example" /></p>
+
+<ul>
+  <li>[1] <code class="language-plaintext highlighter-rouge">ViewModel</code>에 있는 <code class="language-plaintext highlighter-rouge">loadCountries()</code> 함수를 호출한다.</li>
+  <li>[2]~[3] service.getCountries 로 외부 API 호출 및 데이터를 저장한다. 여기서 <code class="language-plaintext highlighter-rouge">self?.countries</code>를 호출 결과로 가져오는 값 또는 널 값으로 지정해주게 되는데, 이렇게 데이터의 변화가 일어난다.</li>
+  <li>[4] <code class="language-plaintext highlighter-rouge">View</code>에서는 지속적으로 <code class="language-plaintext highlighter-rouge">@ObsesrvedObject</code>로 지정된 객체를 관찰하고 있는데, [3]으로 인해 <code class="language-plaintext highlighter-rouge">countries</code> 변수의 값이 업데이트 되고 <code class="language-plaintext highlighter-rouge">ViewModel</code>은 <code class="language-plaintext highlighter-rouge">@Published countries</code>라는 변수를 통해 업데이트를 <code class="language-plaintext highlighter-rouge">View</code>에 알리게 된다.</li>
+  <li>[5] 변경된 내용이 해당되는 <code class="language-plaintext highlighter-rouge">View</code>만 업데이트 하여 보여주게 된다.</li>
+</ul>
+
+<h2 id="마치며">마치며</h2>
+
+<p>아직 커버할 내용이 많은 것은 알고 있다. 아직도 너무 많은 것들을 모르고 있어서 조바심이 많이나지만 이번 글의 내용을 정리하면서  기본적으로 SwiftUI가 MVVM 구조를 통해 작동하는 법은 이해한 것 같다. 다음 글에는 참조글에서 얘기하는 <code class="language-plaintext highlighter-rouge">AppState</code>, <code class="language-plaintext highlighter-rouge">View</code>, <code class="language-plaintext highlighter-rouge">Interactor</code>, <code class="language-plaintext highlighter-rouge">Repository</code>의 정의와 내용을 알아보면서 더 자세한 SwiftUI 내에서의 클린 아키텍쳐를 정리해보겠다.</p>
+
+<h2 id="reference-article">Reference Article</h2>
+
+<p><a href="https://nalexn.github.io/clean-architecture-swiftui/">Clean Architecture for SwiftUI</a> By Alexey Naumov</p>
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Clean Architecture for SwiftUI(1)&url=http://localhost:4000/Clean-Architecture-for-SwiftUI/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/Clean-Architecture-for-SwiftUI/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/Clean-Architecture-for-SwiftUI/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#Swift" class="tag">&#35; Swift</a>
+          
+            <a href="/tags#SwiftUI" class="tag">&#35; SwiftUI</a>
+          
+            <a href="/tags#iOS" class="tag">&#35; iOS</a>
+          
+            <a href="/tags#MVVM" class="tag">&#35; MVVM</a>
+          
+            <a href="/tags#CleanArchitecture" class="tag">&#35; CleanArchitecture</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+    <div id="disqus_thread" class="article-comments"></div>
+    <script>
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//mr-brown.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>SQL vs NoSQL - Hello World! I'm Sean Hong</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="Hello World! I'm Sean Hong" property="og:site_name">
+  
+    <meta content="SQL vs NoSQL" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="SQL 과 NoSQL 기반 데이터베이스들을 알아봤어요\" property="og:description">
+  
+  
+    <meta content="http://localhost:4000/SQL-vs-NoSQL/" property="og:url">
+  
+  
+    <meta content="2022-01-09T05:38:00+09:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
+  
+  
+    <meta content="http://localhost:4000/assets/img/database.png" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="Database" property="article:tag">
+    
+    <meta content="SQL" property="article:tag">
+    
+    <meta content="NoSQL" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="SQL vs NoSQL">
+  
+  
+    <meta name="twitter:url" content="http://localhost:4000/SQL-vs-NoSQL/">
+  
+  
+    <meta name="twitter:description" content="SQL 과 NoSQL 기반 데이터베이스들을 알아봤어요\">
+  
+  
+    <meta name="twitter:image:src" content="http://localhost:4000/assets/img/database.png">
+  
+
+	<meta name="description" content="SQL 과 NoSQL 기반 데이터베이스들을 알아봤어요\">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-touch-icon-144x144.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700|Lato:300,400,700&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/me_profile.jpeg" alt="Sean Hong(홍성민)"></a>
+      </div>
+      <div class="author-name">Sean Hong(홍성민)</div>
+      <p>I'm a CS student from South Korea focusing my studies more into backend developement.</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+        
+          <li><a href="https://twitter.com/artemsheludko_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        
+        
+          <li><a href="https://facebook.com/sean.hong.750" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="github"><a href="http://github.com/KKodiac" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/in/sean-hong-47b977170" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        
+        
+          <li class="email"><a href="mailto:seanhong2000@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+        
+      </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2022 &copy; Sean Hong(홍성민)</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="page-cover-image">
+      <figure>
+        <img class="page-image" src=/assets/img/database.png alt="SQL vs NoSQL">
+        
+      </figure>
+    </div> <!-- End Page Cover Image -->
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">SQL vs NoSQL</h1>
+        <div class="page-date"><span>2022, Jan 09&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <h1 id="sql-vs-nosql-비교">SQL vs NoSQL 비교</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td>[SQL vs. NoSQL: Database Differences Explained</td>
+      <td>Blog</td>
+      <td>Fivetran](https://www.fivetran.com/blog/sql-vs-nosql-database-differences-explained)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>위 링크를 참고한 글 입니다.</p>
+
+<h2 id="sql-데이터베이스">SQL 데이터베이스</h2>
+
+<p>관계형 데이터베이스 라고도 불린다. Structured Query Language(구조화된 질의 언어) 라고 불리고, 1970년대 부터 개발되어 아직까지 많은 기업에서 사용하고 있다.</p>
+
+<p>OLTP (Online Transaction Processing) 서비스에서 활용하면 좋다.</p>
+
+<p>모든 관계형 데이터베이스는 테이블에 있는 데이터를 변경(mutate)하기 위한 작업(트랜잭션)이 이루어진다. 현대 관계형 데이터베이스는 이들 트랜잭션이 동시적으로 일어나는 것을 지원한다.</p>
+
+<p>이들 트랜잭션은 4가지 특징에 중점을 두고 있다.</p>
+
+<ul>
+  <li>Atomicity(원자화)
+    <ul>
+      <li>모든 작업이 반영되는 특성</li>
+    </ul>
+  </li>
+  <li>Consistency(일관성)
+    <ul>
+      <li>미리 정의된 규칙에서만 데이터가 수정되는 특성</li>
+    </ul>
+  </li>
+  <li>Isolation(고립성)
+    <ul>
+      <li>동시에 일어나는 트랜잭션에 대해서 상대 트랜잭션의 접근 정도</li>
+    </ul>
+  </li>
+  <li>Durability(지속성)
+    <ul>
+      <li>한번 커밋된 트랜잭션의 내용은 영구 적용되는 특성</li>
+    </ul>
+  </li>
+</ul>
+
+<p>ACID 라고 불리는 이 특성을 중점으로 관계형 데이터베이스가 설계되었다.</p>
+
+<h3 id="고립화-수준의-문제-정의">고립화 수준의 문제 정의</h3>
+
+<ul>
+  <li>Dirty Read
+    <ul>
+      <li>트랜잭션이 아직 진행 중인(즉 Commit 명령이 발생하지 않은) 데이터에 대해서 다른 트랜잭션이 읽을 수 있는 문제</li>
+    </ul>
+  </li>
+  <li>Non-Repeatable Read(=Inconsistent Analysis)
+    <ul>
+      <li>한 트랜잭션을 수행할 때, 그 사이 다른 트랜잭션이 값을 수정한 것을 모르고  두 쿼리의 결과가 비일관적이게 나오는 문제</li>
+    </ul>
+  </li>
+  <li>Phantom Read
+    <ul>
+      <li>테이블의 레코드를 읽을 때 첫 쿼리에서 없던 레코드가 두 번째 쿼리에서 다른 트랜잭션에 의해 생성되어 나타나는 문제</li>
+    </ul>
+  </li>
+  <li>Serialization Anomaly
+    <ul>
+      <li>동시에 처리되는 두 개의 트랜잭션에서 하나의 트랜잭션이 처리한 내용이 다른 트랜잭션에 의해 누락되어 버리는 문제</li>
+    </ul>
+
+    <p>위 문제들에 대한 예시는 여기를 참고하면 좋다.</p>
+
+    <p><a href="https://pgdash.io/blog/postgres-transactions.html">Transaction Isolation in PostgreSQL</a></p>
+  </li>
+</ul>
+
+<p>데이터의 안전성을 고립화 수준 4레벨로 나누어 지원한다.</p>
+
+<ul>
+  <li>레벨 0 (Read Uncommitted)
+    <ul>
+      <li>아직 Commit 되지 않은 데이터를 다른 트랜잭션이 읽는 것을 허용하는 수준이다.</li>
+      <li>데이터의 고립화가 아에 되지 않는 고립화 수준이다.</li>
+      <li>따라서 Dirty Read, Non-Repeatable Read, Phantom Read 모두 발생한다.</li>
+    </ul>
+  </li>
+  <li>레벨 1 (Read Committed)
+    <ul>
+      <li>트랙잭션이 Commit 되어 확정된 데이터만 읽는 것을 허용하는 수준이다.</li>
+      <li>고립화 수준의 문제에서 Dirty Read 를 방지한다.</li>
+      <li>대부분의 관계형 데이터베이스들이 이 수준을 기본 값으로 설정해 놓았다.</li>
+      <li>Lock을 통한 구현(SQL Server, DB2)과 Undo를 활용한 구현(Oracle)방식이 있다.</li>
+    </ul>
+  </li>
+  <li>레벨 2 (Repeatable Read)
+    <ul>
+      <li>선행 트랜잭션이 처리 중인 데이터에 대해서는 후행 트랜잭션이 갱신 및 삭제 등을 불허하면서 같은 데이터를 두 번 쿼리했을 때 일관성있는 결과를 반환한다.</li>
+      <li>Non-Repeatable Read까지 방지해 준다.</li>
+      <li>데이터에 걸린 공유 Lock을 Commit할 때까지 유지하는 방식으로 구현</li>
+    </ul>
+  </li>
+  <li>레벨 3 (Serializable Read)
+    <ul>
+      <li>선행 트랜잭션이 읽은 데이터를 후행 트랜잭션이 갱신/삭제/삽입하는 것을 막는다.</li>
+      <li>완벽한 읽기 일관성을 제공한다.</li>
+      <li>Phantom Read 까지 방지한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="nosql-데이터베이스">NoSQL 데이터베이스</h2>
+
+<p>NoSQL 데이터베이스는 기존 관계형 데이터베이스가 지원하는 SQL을 활용하지 않는 데이터베이스들을 통합해서 부르는 것이다.</p>
+
+<p>네트워크 컴퓨팅의 발전으로 지역별로 관리되는 데이터베이스들이 많아졌는데, 이들을 연동하는 과정에서 기존 시스템에서는 100% 유효성을 검증하기 힘들어졌다.</p>
+
+<p>이들을 관리하기 위해서는 일관성, 유효성, 그리고 네트워크 및 하드웨어 오류 발생 시에도 관대한 데이터베이스 시스템이 필요했다.</p>
+
+<p>따라서 Horizontal Scaling을 위해 기존 ACID 대체하는 BASE(Basically Available, Soft State, Eventually Consistent - 기본으로 유효한, 유연한, 결국 일관적인) 를 기반으로 한 NoSQL 또는 비관계형 데이터베이스를 생각하게 되었다.</p>
+
+<p>이들 NoSQL 기반 데이터베이스들은 Event-Driven 아키텍쳐로 여러 네트워크 상에 분산되어 있는 데이터베이스들의 트랜잭션을 스케일링하기 위해서 사용된다.</p>
+
+<p>Document, Key-Value, Graph, Wide-Column 등의 데이터베이스 종류가 있다.</p>
+
+<ul>
+  <li>Document stores
+    <ul>
+      <li>MongoDB, Firebase, Couchbase</li>
+      <li>각 문서(Document)가 고유하며 시간에 따라 변하는 카탈로그, 사용자 정보, 컨텐트 관리 시스템 등에 유용하다.</li>
+      <li>JSON, XML 등의 형태로 문서를 관리한다.</li>
+      <li>스케일 가능한 구조로 짜여있기 때문에 스타트업 등에 유용하다</li>
+      <li>데이터의 고유성 등 ACID 적용이 필요한 데이터에는 적절하지 않을 수 있다.
+        <ul>
+          <li>최근 MongoDB는 ACID 트랜잭션을 지원한다</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Key-Value stores
+    <ul>
+      <li>Redis, Memcached, Amazon DynamoDB</li>
+      <li>기존 정의된 스키마에 의존하는 것이 아닌, 키-값 관계를 정의하여 데이터를 저장한다.</li>
+      <li>Horizontal Scaling 에 유용하다.</li>
+    </ul>
+  </li>
+  <li>Graph stores
+    <ul>
+      <li>Graphbase, Dgraph, InfoGrid</li>
+      <li>각 노드(사람, 장소와 같은 데이터)가 고유 식별자가 있고, 다른 노드 사이의 엣지(노드 사이의 관계relationship으로 표현)로 이어져 있다.</li>
+    </ul>
+  </li>
+  <li>Wide-Column stores
+    <ul>
+      <li>Apache Cassandra, Apache Hbase, MS Azure Table</li>
+      <li>Extensive record stores라고도 불린다.</li>
+      <li>관계형 데이터베이스와 유사하게 Row &amp; Column 으로 이뤄져있다.</li>
+      <li>관계형 데이터베이스와 다르게 데이터가 Column 기준으로 저장된다.</li>
+      <li>따라서 대용량의 데이터를 다루는 OLAP(Online Analytical Processing-빅데이터 관련 작업 등)에 용이하다</li>
+      <li>스키마가 다른 NoSQL 기반 데이터베이스와 같이 필요 없다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="추가-자료">추가 자료</h2>
+
+<p><a href="https://db-engines.com/en/ranking">DB-Engines Ranking</a></p>
+
+<p>데이터 베이스 랭킹</p>
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=SQL vs NoSQL&url=http://localhost:4000/SQL-vs-NoSQL/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/SQL-vs-NoSQL/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/SQL-vs-NoSQL/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#Database" class="tag">&#35; Database</a>
+          
+            <a href="/tags#SQL" class="tag">&#35; SQL</a>
+          
+            <a href="/tags#NoSQL" class="tag">&#35; NoSQL</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+    <div id="disqus_thread" class="article-comments"></div>
+    <script>
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//mr-brown.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>
