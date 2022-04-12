@@ -21,7 +21,7 @@ tags: [Swift, MacOS, Popover, Alamofire]
  
 
 ## Prerequisites
-[Lyricli](https://github.com/KKodiac/lyricli)의 API 버전인 [Lyricapi](https://github.com/KKodiac/lyricli/lyricapi)가 실행 중이어야 한다. 추가적인 내용은 해당 링크의 README.md 를 참고하면 된다.
+[Lyricli](https://github.com/KKodiac/lyricli)의 API 버전인 [Lyricapi](https://github.com/KKodiac/lyricli/tree/main/lyricapi)가 실행 중이어야 한다. 추가적인 내용은 해당 링크의 README.md 를 참고하면 된다.
 
 또한 Swift의 HTTP Networking library 인 Alamofire 라이브러리를  Swift Package Manager에 추가해 줘야한다. 
 
