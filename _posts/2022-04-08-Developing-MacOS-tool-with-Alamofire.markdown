@@ -29,8 +29,6 @@ tags: [Swift, MacOS, Popover, Alamofire]
 
 Swift 에서는 크게 세 가지의 패키지 매니저가 존재한다. `Carthage`, `Cocoapods`, 그리고 애플에서 발표한 `Swift Package Manager(SPM)`이 세가지다. 해당 패키지 매니저들의 차이점은 다음 시간에 알아보기로 하고, [Alamofire](https://github.com/Alamofire/Alamofire) 깃허브 저장소에서 SPM으로 패키지를 프로젝트에 추가해주기로 한다.
 
-![Installation](({{site.baseurl}}/assets/img/installation.png))
-
 
 ## Challenges-During-Project
 
