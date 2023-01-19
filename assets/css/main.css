@@ -446,10 +446,11 @@ template {
 .highlighter-rouge {
   color: #ce887b;
   font-weight: 400;
-  border: 1px solid #607D8B;
+  border: 1px solid #3a444c;
   -webkit-border-radius: 3px;
           border-radius: 3px;
   padding: 0.1rem 0.5rem;
+  background: #11181e;
 }
 
 .highlight .hll {
@@ -775,7 +776,7 @@ html {
 body {
   font-family: 'Lato', sans-serif;
   color: #515151;
-  background-color: #fbfbfb;
+  background-color: #11181e;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -889,7 +890,7 @@ table tfoot td {
 }
 
 .post, .article-page {
-  background-color: #fff;
+  background-color: #17212b;
 }
 
 ::-moz-selection {
@@ -1408,7 +1409,7 @@ a.newer-posts:hover {
             justify-content: space-between;
     width: 100%;
     padding: 10px;
-    background-color: #ffffff;
+    background-color: #17212b;
     -webkit-box-shadow: 0 1px 1px 0 rgba(31, 35, 46, 0.15);
             box-shadow: 0 1px 1px 0 rgba(31, 35, 46, 0.15);
   }
