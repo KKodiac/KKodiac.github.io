@@ -1,38 +1,40 @@
----
-layout: main
----
-<article class="article-page">
-  <div class="page-content">
-    {% if page.img %}
-    <div class="page-cover-image">
-      <figure>
-        <img class="page-image" src={{ "/assets/img/" | prepend: site.baseurl | append : page.img}} alt="{{page.title}}">
-        {% if page.fig-caption %}
-          <figcaption>{{page.fig-caption}}</figcaption>
-        {% endif %}
-      </figure>
-    </div> <!-- End Page Cover Image -->
-    {% else %}
-    {% endif %}
-    <div class="wrap-content">
-      <header class="header-page">
-        <h1 class="page-title">{{page.title}}</h1>
-        <div class="page-date"><span>{{page.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
-      </header>
-      {{content | markdownify}}
-      <div class="page-footer">
-        <div class="page-share">
-          <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
-          <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
-          <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
-        </div>
-        <div class="page-tag">
-          {% for tag in page.tags %}
-            <a href="{{site.baseurl}}/tags#{{tag}}" class="tag">&#35; {{ tag }}</a>
-          {% endfor %}
-        </div>
-      </div>
-      {% include disqus.html %}
-    </div> <!-- End Wrap Content -->
-  </div> <!-- End Page Content -->
-</article> <!-- End Article Page -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ page.description | default: page.title }}">
+    <title>{{ page.title }} — Sean Hong</title>
+    <style>
+      :root{color-scheme:light;--bg:#f7f8fb;--surface:#fff;--ink:#111827;--muted:#667085;--line:#e5e7eb;--accent:#3158d7;--accent-soft:#edf1ff;--shadow:0 20px 55px rgba(23,33,56,.08)}
+      :root[data-theme="dark"]{color-scheme:dark;--bg:#0f1420;--surface:#171e2d;--ink:#f4f6fb;--muted:#a5afc2;--line:#2a3448;--accent:#8fa5ff;--accent-soft:#242e50;--shadow:0 20px 55px rgba(0,0,0,.22)}
+      @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f1420;--surface:#171e2d;--ink:#f4f6fb;--muted:#a5afc2;--line:#2a3448;--accent:#8fa5ff;--accent-soft:#242e50;--shadow:0 20px 55px rgba(0,0,0,.22)}}
+      *{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.75}a{color:var(--accent)}.page{width:min(100% - 48px,1120px);margin:auto}
+      nav{display:flex;align-items:center;justify-content:space-between;height:88px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px;color:var(--ink);font-size:14px;font-weight:800;text-decoration:none}.brand-mark{display:grid;width:31px;height:31px;place-items:center;border-radius:9px;background:var(--accent);color:#fff;font-size:13px}.nav-links{display:flex;align-items:center;gap:24px}.nav-links a{color:var(--muted);font-size:13px;text-decoration:none}.nav-links a:hover{color:var(--accent)}.theme-toggle{display:grid;width:34px;height:34px;place-items:center;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--ink);cursor:pointer}
+      .article-wrap{width:min(100%,780px);margin:0 auto;padding:92px 0 100px}.kicker{display:flex;align-items:center;gap:9px;margin:0 0 22px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.kicker:before{width:25px;height:2px;border-radius:2px;background:var(--accent);content:""}.article-header h1{max-width:760px;margin:0;font-size:clamp(2.5rem,6vw,5rem);font-weight:800;letter-spacing:-.08em;line-height:1.02}.dek{max-width:650px;margin:24px 0 0;color:var(--muted);font-size:18px}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px;color:var(--muted);font-size:12px}.tag{padding:4px 9px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-weight:750}.article{margin-top:65px}.article h2{margin:48px 0 12px;font-size:24px;letter-spacing:-.04em}.article h3{margin:30px 0 8px;font-size:17px}.article p{margin:16px 0;color:var(--muted)}.article ul{padding-left:22px;color:var(--muted)}.article blockquote{margin:25px 0;padding:14px 20px;border-left:3px solid var(--accent);background:var(--surface);box-shadow:var(--shadow);color:var(--muted)}.article img{display:block;max-width:100%;margin:30px auto;border-radius:10px;border:1px solid var(--line)}.refs{display:grid;gap:8px;margin-top:18px;padding:20px 24px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.refs a{text-decoration:none;font-size:14px}.back{display:inline-flex;margin-top:60px;padding:10px 15px;border:1px solid var(--line);border-radius:8px;text-decoration:none;font-size:13px;font-weight:750}.back:hover{border-color:var(--accent)}footer{padding:0 0 28px;color:var(--muted);font-size:12px}
+      @media(max-width:740px){.page{width:min(100% - 32px,560px)}nav{height:72px}.nav-links a:not(:last-of-type){display:none}.article-wrap{padding:65px 0 70px}.dek{font-size:16px}.article{margin-top:45px}}
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <nav aria-label="Primary navigation">
+        <a class="brand" href="{{ site.baseurl }}/" aria-label="Sean Hong portfolio"><span class="brand-mark">S</span> Sean Hong</a>
+        <div class="nav-links"><a href="{{ site.baseurl }}/">Portfolio</a><a href="https://github.com/KKodiac/KKodiac.github.io/blob/master/_posts/{{ page.path | split: '/' | last }}" target="_blank" rel="noreferrer">Source ↗</a><button class="theme-toggle" type="button" aria-label="Switch to dark mode"><span>☾</span></button></div>
+      </nav>
+      <main class="article-wrap">
+        <header class="article-header">
+          <p class="kicker">Writing{% if page.tags %} · {{ page.tags | join: ' · ' }}{% endif %}</p>
+          <h1>{{ page.title }}</h1>
+          {% if page.description %}<p class="dek">{{ page.description }}</p>{% endif %}
+          <div class="meta"><span>{{ page.date | date: "%B %-d, %Y" }}</span>{% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+        </header>
+        <article class="article">
+          {{ content }}
+          <a class="back" href="{{ site.baseurl }}/">← Back to Sean’s portfolio</a>
+        </article>
+      </main>
+      <footer>© {{ site.time | date: "%Y" }} Sean Hong · Writing archive</footer>
+    </div>
+    <script>const root=document.documentElement,toggle=document.querySelector(".theme-toggle"),icon=toggle.querySelector("span"),saved=localStorage.getItem("sean-theme");if(saved)root.dataset.theme=saved;function update(){const dark=root.dataset.theme==="dark"||(!root.dataset.theme&&matchMedia("(prefers-color-scheme: dark)").matches);icon.textContent=dark?"☀":"☾";toggle.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode")}toggle.addEventListener("click",()=>{const dark=root.dataset.theme==="dark"||(!root.dataset.theme&&matchMedia("(prefers-color-scheme: dark)").matches);root.dataset.theme=dark?"light":"dark";localStorage.setItem("sean-theme",root.dataset.theme);update()});update();</script>
+  </body>
+</html>
