@@ -1,1 +1,53 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Building an iOS App with FOAAS — Sean Hong</title><style>body{max-width:720px;margin:80px auto;padding:0 24px;font:16px/1.7 system-ui;color:#172033}a{color:#3158d7}</style></head><body><p><a href="/">← Sean Hong portfolio</a></p><h1>Building an iOS App with FOAAS</h1><p>This article is part of Sean Hong’s technical blog archive.</p><p><a href="https://github.com/KKodiac/KKodiac.github.io/blob/master/_posts/2022-04-25-Foaas-for-IOS.markdown">Read the source article on GitHub ↗</a></p></body></html>
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sean Hong의 FOAAS iOS 프로젝트 기록 — Swift와 Alamofire를 활용한 작은 macOS 메뉴바 앱 실험.">
+    <title>Building an iOS App with FOAAS — Sean Hong</title>
+    <style>
+      :root { color-scheme: light; --bg:#f7f8fb; --surface:#fff; --ink:#111827; --muted:#667085; --line:#e5e7eb; --accent:#3158d7; --accent-soft:#edf1ff; --shadow:0 20px 55px rgba(23,33,56,.08); }
+      :root[data-theme="dark"] { color-scheme:dark; --bg:#0f1420; --surface:#171e2d; --ink:#f4f6fb; --muted:#a5afc2; --line:#2a3448; --accent:#8fa5ff; --accent-soft:#242e50; --shadow:0 20px 55px rgba(0,0,0,.22); }
+      @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f1420;--surface:#171e2d;--ink:#f4f6fb;--muted:#a5afc2;--line:#2a3448;--accent:#8fa5ff;--accent-soft:#242e50;--shadow:0 20px 55px rgba(0,0,0,.22)}}
+      *{box-sizing:border-box} html{scroll-behavior:smooth;background:var(--bg)} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.75} a{color:var(--accent)}
+      .page{width:min(100% - 48px,1120px);margin:auto} nav{display:flex;align-items:center;justify-content:space-between;height:88px;border-bottom:1px solid var(--line)} .brand{display:flex;align-items:center;gap:11px;color:var(--ink);font-size:14px;font-weight:800;text-decoration:none}.brand-mark{display:grid;width:31px;height:31px;place-items:center;border-radius:9px;background:var(--accent);color:#fff;font-size:13px}.nav-links{display:flex;align-items:center;gap:24px}.nav-links a{color:var(--muted);font-size:13px;text-decoration:none}.nav-links a:hover{color:var(--accent)}.theme-toggle{display:grid;width:34px;height:34px;place-items:center;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--ink);cursor:pointer}
+      .article-wrap{width:min(100%,780px);margin:0 auto;padding:92px 0 100px}.kicker{display:flex;align-items:center;gap:9px;margin:0 0 22px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.kicker:before{width:25px;height:2px;border-radius:2px;background:var(--accent);content:""}.article-header h1{max-width:760px;margin:0;font-size:clamp(2.5rem,6vw,5rem);font-weight:800;letter-spacing:-.08em;line-height:1.02}.dek{max-width:650px;margin:24px 0 0;color:var(--muted);font-size:18px}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px;color:var(--muted);font-size:12px}.tag{padding:4px 9px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-weight:750}.article{margin-top:65px}.article h2{margin:48px 0 12px;font-size:24px;letter-spacing:-.04em}.article h3{margin:30px 0 8px;font-size:17px}.article p{margin:16px 0;color:var(--muted)}.article ul{padding-left:22px;color:var(--muted)}.article blockquote{margin:25px 0;padding:14px 20px;border-left:3px solid var(--accent);background:var(--surface);box-shadow:var(--shadow);color:var(--muted)}.article img{display:block;max-width:100%;margin:30px auto;border-radius:10px;border:1px solid var(--line)}.refs{display:grid;gap:8px;margin-top:18px;padding:20px 24px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.refs a{text-decoration:none;font-size:14px}.back{display:inline-flex;margin-top:60px;padding:10px 15px;border:1px solid var(--line);border-radius:8px;text-decoration:none;font-size:13px;font-weight:750}.back:hover{border-color:var(--accent)}footer{padding:0 0 28px;color:var(--muted);font-size:12px}
+      @media(max-width:740px){.page{width:min(100% - 32px,560px)}nav{height:72px}.nav-links a:not(:last-of-type){display:none}.article-wrap{padding:65px 0 70px}.dek{font-size:16px}.article{margin-top:45px}}
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <nav aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="Sean Hong portfolio"><span class="brand-mark">S</span> Sean Hong</a>
+        <div class="nav-links"><a href="/">Portfolio</a><a href="https://github.com/KKodiac/KKodiac.github.io/blob/master/_posts/2022-04-25-Foaas-for-IOS.markdown" target="_blank" rel="noreferrer">Source ↗</a><button class="theme-toggle" type="button" aria-label="Switch to dark mode"><span>☾</span></button></div>
+      </nav>
+      <main class="article-wrap">
+        <header class="article-header">
+          <p class="kicker">Writing · Swift &amp; macOS</p>
+          <h1>Building an iOS App with FOAAS</h1>
+          <p class="dek">Swift와 Alamofire를 활용해 오픈 API를 작은 Apple-platform 앱으로 연결해 본 프로젝트 기록입니다.</p>
+          <div class="meta"><span>April 25, 2022</span><span>·</span><span class="tag">Swift</span><span class="tag">Alamofire</span><span class="tag">iOS</span></div>
+        </header>
+        <article class="article">
+          <h2>개요</h2>
+          <p>Github의 <a href="https://github.com/toddmotto/public-apis" target="_blank" rel="noreferrer">awesome-apis</a> 저장소를 둘러보던 중 FOAAS(Fuck Off As A Service)라는 오픈 API를 발견했습니다. iOS 공부를 겸해 인증과 SSL이 필요하지 않은 API를 실험 대상으로 삼아 간단한 앱을 만들어 보기로 했습니다.</p>
+          <p>이 프로젝트는 API를 실제 사용자 경험으로 바꾸는 과정에서 네트워크 요청, macOS 메뉴바 앱, SwiftUI 라이프사이클을 함께 탐색한 기록입니다.</p>
+          <img src="/assets/img/demo_foaas_ios.png" alt="FOAAS app project preview">
+          <h2>진행하며 마주한 문제</h2>
+          <ul><li>현재 재생 중인 음악 정보를 어떻게 가져올 것인가</li><li>macOS 메뉴바 앱을 어떻게 구성할 것인가</li><li>Alamofire를 사용해 네트워크 요청을 어떻게 구성할 것인가</li><li>NSPopover의 anchor arrow를 어떻게 다루고 Human Interface Guidelines를 어떻게 지킬 것인가</li></ul>
+          <h3>Alamofire와 API 연결</h3>
+          <p>Alamofire 공식 문서를 참고해 API 요청을 구성하고, 응답을 앱 화면에서 사용할 수 있는 형태로 변환했습니다. 작은 프로젝트였지만 외부 API의 경계와 실패 가능성을 직접 확인하는 좋은 실험이었습니다.</p>
+          <h3>메뉴바와 팝오버</h3>
+          <p>NSPopover 기반 메뉴바 앱 예제를 살펴보며 AppDelegate와 애플리케이션 라이프사이클을 SwiftUI 앱에 연결하는 방법을 학습했습니다. UI 동작을 구현하는 것뿐 아니라 macOS의 기본 상호작용을 존중하는 것도 중요한 과제였습니다.</p>
+          <h2>마치며</h2>
+          <p>강의를 따라가며 배우는 것도 중요하지만, 직접 작은 제품을 구상하고 구현하면서 문제를 만나는 과정 역시 큰 학습이 됩니다. 이 프로젝트는 SwiftUI, 네트워크 통신, macOS 앱 생명주기를 함께 연습할 수 있었던 출발점이었습니다.</p>
+          <h2>References</h2>
+          <div class="refs"><a href="https://github.com/Alamofire/Alamofire" target="_blank" rel="noreferrer">Alamofire documentation ↗</a><a href="https://stackoverflow.com/questions/4801860/can-i-remove-the-arrow-in-the-popover-view" target="_blank" rel="noreferrer">Removing the popover arrow ↗</a><a href="https://stackoverflow.com/questions/61003379/how-to-get-currently-playing-song-on-mac-swift" target="_blank" rel="noreferrer">Getting currently playing music on macOS ↗</a></div>
+          <a class="back" href="/">← Back to Sean’s portfolio</a>
+        </article>
+      </main>
+      <footer>© 2026 Sean Hong · Writing archive</footer>
+    </div>
+    <script>const root=document.documentElement,toggle=document.querySelector(".theme-toggle"),icon=toggle.querySelector("span"),saved=localStorage.getItem("sean-theme");if(saved)root.dataset.theme=saved;function update(){const dark=root.dataset.theme==="dark"||(!root.dataset.theme&&matchMedia("(prefers-color-scheme: dark)").matches);icon.textContent=dark?"☀":"☾";toggle.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode")}toggle.addEventListener("click",()=>{const dark=root.dataset.theme==="dark"||(!root.dataset.theme&&matchMedia("(prefers-color-scheme: dark)").matches);root.dataset.theme=dark?"light":"dark";localStorage.setItem("sean-theme",root.dataset.theme);update()});update();</script>
+  </body>
+</html>
