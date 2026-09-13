@@ -1,19 +1,391 @@
----
-layout: main
----
-{% for post in paginator.posts %}
-<article class="post">
-  {% if post.img %}
-    <a class="post-thumbnail" style="background-image: url({{"/assets/img/" | prepend: site.baseurl | append : post.img}})" href="{{post.url | prepend: site.baseurl}}"></a>
-  {% else %}
-  {% endif %}
-  <div class="post-content">
-    <h2 class="post-title"><a href="{{post.url | prepend: site.baseurl}}">{{post.title}}</a></h2>
-    <p>{{ post.content | strip_html | truncatewords: 15 }}</p>
-    <span class="post-date">{{post.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;—&nbsp;</span>
-    <span class="post-words">{% capture words %}{{ post.content | number_of_words }}{% endcapture %}{% unless words contains "-" %}{{ words | plus: 250 | divided_by: 250 | append: " minute read" }}{% endunless %}</span>
-  </div>
-</article>
-{% endfor %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f8fb" />
+    <meta name="description" content="Sean Hong is an iOS engineer focused on SwiftUI, TCA, ARKit, RealityKit, and dependable Apple-platform products." />
+    <meta property="og:title" content="Sean Hong — iOS Engineer" />
+    <meta property="og:description" content="iOS engineer focused on SwiftUI, TCA, ARKit, RealityKit, and dependable Apple-platform products." />
+    <meta property="og:url" content="https://kkodiac.github.io/" />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://kkodiac.github.io/" />
+    <title>Sean Hong — iOS Engineer</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f8fb;
+        --surface: #ffffff;
+        --ink: #111827;
+        --muted: #667085;
+        --line: #e5e7eb;
+        --accent: #3158d7;
+        --accent-soft: #edf1ff;
+        --navy: #182238;
+        --shadow: 0 20px 55px rgba(23, 33, 56, .08);
+      }
 
-{% include pagination.html %}
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #0f1420;
+        --surface: #171e2d;
+        --ink: #f4f6fb;
+        --muted: #a5afc2;
+        --line: #2a3448;
+        --accent: #8fa5ff;
+        --accent-soft: #242e50;
+        --navy: #e9edff;
+        --shadow: 0 20px 55px rgba(0, 0, 0, .22);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --bg: #0f1420; --surface: #171e2d; --ink: #f4f6fb;
+          --muted: #a5afc2; --line: #2a3448; --accent: #8fa5ff;
+          --accent-soft: #242e50; --navy: #e9edff;
+          --shadow: 0 20px 55px rgba(0, 0, 0, .22);
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; background: var(--bg); }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        transition: background .2s ease, color .2s ease;
+      }
+      a { color: inherit; }
+      .page { width: min(100% - 48px, 1120px); margin: auto; }
+      nav {
+        display: flex; align-items: center; justify-content: space-between;
+        height: 88px; border-bottom: 1px solid var(--line);
+      }
+      .brand { display: flex; align-items: center; gap: 11px; font-size: 14px; font-weight: 800; text-decoration: none; }
+      .brand-mark {
+        display: grid; width: 31px; height: 31px; place-items: center;
+        border-radius: 9px; background: var(--accent); color: white; font-size: 13px;
+      }
+      .nav-links { display: flex; align-items: center; gap: 27px; }
+      .nav-links a { color: var(--muted); font-size: 13px; text-decoration: none; }
+      .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+      .theme-toggle {
+        display: grid; width: 34px; height: 34px; place-items: center; margin-left: 3px;
+        border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink);
+        cursor: pointer; font-size: 15px;
+      }
+
+      .hero {
+        display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(250px, .7fr);
+        gap: 80px; align-items: end; padding: 104px 0 100px;
+      }
+      .kicker {
+        display: flex; align-items: center; gap: 9px; margin: 0 0 22px;
+        color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+      }
+      .kicker::before { width: 25px; height: 2px; border-radius: 2px; background: var(--accent); content: ""; }
+      h1 {
+        max-width: 720px; margin: 0; font-size: clamp(3.2rem, 7vw, 6.3rem);
+        font-weight: 800; letter-spacing: -.085em; line-height: .94;
+      }
+      h1 em { color: var(--accent); font-style: normal; }
+      .hero-copy { max-width: 570px; margin: 28px 0 0; color: var(--muted); font-size: 18px; line-height: 1.65; }
+      .role-note { margin-top: 12px; font-size: 14px; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+      .button {
+        display: inline-flex; align-items: center; gap: 8px; padding: 11px 17px;
+        border: 1px solid var(--line); border-radius: 8px; font-size: 13px; font-weight: 750;
+        text-decoration: none; transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      }
+      .button:hover, .button:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+      .button.primary { border-color: var(--accent); background: var(--accent); color: white; }
+      .hero-note { border-left: 1px solid var(--accent); padding: 3px 0 3px 25px; }
+      .hero-note strong { display: block; margin-bottom: 10px; color: var(--ink); font-size: 14px; }
+      .hero-note p { margin: 0; color: var(--muted); font-size: 14px; }
+
+      .section { padding: 0 0 108px; }
+      .section-label { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+      .section-label::after { flex: 1; height: 1px; background: var(--line); content: ""; }
+      .section-label small { color: var(--muted); font-size: 12px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+      .experience {
+        display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px;
+        padding: 27px 29px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow);
+      }
+      .experience h2 { margin: 0 0 6px; font-size: 23px; letter-spacing: -.04em; }
+      .experience .company { color: var(--accent); font-size: 14px; font-weight: 750; }
+      .experience p { max-width: 650px; margin: 17px 0 0; color: var(--muted); font-size: 14px; }
+      .impact-list { display: grid; gap: 10px; margin: 21px 0 0; padding: 0; list-style: none; }
+      .impact-list li { position: relative; padding-left: 17px; color: var(--muted); font-size: 13px; }
+      .impact-list li::before { position: absolute; top: .72em; left: 0; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); content: ""; }
+      .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; align-content: center; }
+      .fact { padding-left: 16px; border-left: 1px solid var(--line); }
+      .fact strong { display: block; color: var(--ink); font-size: 22px; letter-spacing: -.04em; }
+      .fact span { color: var(--muted); font-size: 12px; }
+
+      .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .project {
+        display: block; min-height: 235px; padding: 26px 28px; border: 1px solid var(--line);
+        border-radius: 12px; background: var(--surface); text-decoration: none;
+        transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      }
+      .project:hover, .project:focus-visible { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-5px); }
+      .project-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 43px; }
+      .project-icon { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 10px; background: var(--accent-soft); color: var(--accent); font-size: 19px; }
+      .project-arrow { color: var(--muted); font-size: 18px; }
+      .project h3 { margin: 0 0 8px; color: var(--ink); font-size: 19px; letter-spacing: -.03em; }
+      .project p { max-width: 450px; margin: 0; color: var(--muted); font-size: 14px; }
+      .meta { display: block; margin-top: 16px; color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+      .writing-list { display: grid; gap: 12px; }
+      .writing-card { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 21px 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-decoration: none; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+      .writing-card:hover, .writing-card:focus-visible { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-3px); }
+      .writing-card h3 { margin: 0 0 5px; font-size: 17px; letter-spacing: -.02em; }
+      .writing-card p { margin: 0; color: var(--muted); font-size: 13px; }
+      .writing-date { color: var(--muted); font-size: 12px; white-space: nowrap; }
+
+      .skills {
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      }
+      .skill { padding: 16px 17px; border-top: 2px solid var(--accent); background: var(--surface); }
+      .skill strong { display: block; margin-bottom: 4px; font-size: 13px; }
+      .skill span { color: var(--muted); font-size: 12px; }
+      .practice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .practice { padding: 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+      .practice-number { display: block; margin-bottom: 30px; color: var(--accent); font-size: 12px; font-weight: 800; }
+      .practice h3 { margin: 0 0 8px; font-size: 16px; letter-spacing: -.02em; }
+      .practice p { margin: 0; color: var(--muted); font-size: 13px; }
+      .case-study { display: grid; grid-template-columns: .65fr 1.35fr; gap: 38px; padding: 28px 30px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+      .case-study h2 { margin: 0 0 8px; font-size: 23px; letter-spacing: -.04em; }
+      .case-study-intro { margin: 0; color: var(--muted); font-size: 13px; }
+      .case-study-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 26px; }
+      .case-study-details div { border-top: 2px solid var(--accent); padding-top: 10px; }
+      .case-study-details strong { display: block; margin-bottom: 4px; font-size: 13px; }
+      .case-study-details span { color: var(--muted); font-size: 13px; }
+      .timeline { display: grid; gap: 0; }
+      .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 28px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+      .timeline-item:first-child { padding-top: 0; }
+      .timeline-item:last-child { border-bottom: 0; }
+      .timeline-date { color: var(--muted); font-size: 13px; }
+      .timeline-item h3 { margin: 0 0 3px; font-size: 16px; letter-spacing: -.02em; }
+      .timeline-item p { margin: 0; color: var(--muted); font-size: 13px; }
+      .confidentiality { margin-top: 18px !important; font-size: 12px !important; font-style: italic; }
+      .contact {
+        display: flex; align-items: center; justify-content: space-between; gap: 25px;
+        padding: 35px 0 70px; border-top: 1px solid var(--line);
+      }
+      .contact h2 { margin: 0; font-size: 27px; letter-spacing: -.05em; }
+      .contact p { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+      footer { padding: 0 0 28px; color: var(--muted); font-size: 12px; }
+
+      @media (max-width: 740px) {
+        .page { width: min(100% - 32px, 560px); }
+        nav { height: 72px; }
+        .nav-links a:not(:last-of-type) { display: none; }
+        .hero { grid-template-columns: 1fr; gap: 38px; padding: 75px 0 78px; }
+        .hero-copy { font-size: 16px; }
+        .experience, .projects { grid-template-columns: 1fr; }
+        .practice-grid { grid-template-columns: 1fr; }
+        .case-study { grid-template-columns: 1fr; gap: 24px; }
+        .writing-card { grid-template-columns: 1fr; gap: 10px; }
+        .skills { grid-template-columns: repeat(2, 1fr); }
+        .contact { display: block; }
+        .contact .button { margin-top: 20px; }
+      }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <nav aria-label="Primary navigation">
+        <a class="brand" href="https://www.linkedin.com/in/sean-hong-47b977170/" target="_blank" rel="noreferrer" aria-label="Sean Hong on LinkedIn"><span class="brand-mark">S</span> Sean Hong</a>
+        <div class="nav-links">
+          <a href="#experience">Experience</a>
+          <a href="#work">Work</a>
+          <a href="#writing">Writing</a>
+          <a href="https://github.com/KKodiac" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/sean-hong-47b977170/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <a href="https://docs.google.com/file/d/1MwfZptunw4LkKsOnSDNh4UceTdZmLTBt/edit?usp=docslist_api&filetype=msword" target="_blank" rel="noreferrer">CV ↗</a>
+          <button class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle dark mode"><span aria-hidden="true">☾</span></button>
+        </div>
+      </nav>
+
+      <header class="hero">
+        <div>
+          <p class="kicker">iOS engineer · Seoul, South Korea</p>
+          <h1>Building better tools for <em>real-world work.</em></h1>
+          <p class="hero-copy">I’m Sean Hong, an iOS engineer focused on SwiftUI, TCA, ARKit, and RealityKit. I turn complex 3D and hardware workflows into dependable Apple-platform products.</p>
+          <p class="hero-copy role-note">Open to iOS and Apple-platform engineering roles where product quality, systems thinking, and thoughtful collaboration matter.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="mailto:seongmin.hong.dev@gmail.com">Let’s talk <span aria-hidden="true">↗</span></a>
+            <a class="button" href="#work">View selected work</a>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <strong>Currently at Medit</strong>
+          <p>Building multi-platform dental software and helping teams ship thoughtful iPadOS and macOS experiences.</p>
+        </aside>
+      </header>
+
+      <section class="section" id="experience" aria-labelledby="experience-label">
+        <div class="section-label" id="experience-label">Experience</div>
+        <div class="experience">
+          <div>
+            <h2>Apple-platform development, from architecture to launch.</h2>
+            <span class="company">Medit · iOS Engineer · Jan 2024 — Present</span>
+            <p>Shipped Medit Link Express for iPadOS, supported intraoral scanners and patient-management workflows, and helped extend the product to macOS. Established TCA + SwiftUI patterns, modular architecture with Tuist, and Swift/C++ interoperability for 3D rendering and hardware.</p>
+            <ul class="impact-list">
+              <li>Helped launch the team’s first iPadOS dental application for clinical workflows.</li>
+              <li>Introduced a reusable TCA + SwiftUI development pattern adopted by an 11-person project team.</li>
+              <li>Connected Swift with existing C++ 3D-rendering and scanner hardware APIs through Swift 5.9 interoperability.</li>
+            </ul>
+            <p class="confidentiality">Some product details are intentionally summarized due to confidentiality.</p>
+          </div>
+          <div class="facts">
+            <div class="fact"><strong>3</strong><span>Apple platforms shipped for</span></div>
+            <div class="fact"><strong>1st</strong><span>iPadOS dental app at Medit</span></div>
+            <div class="fact"><strong>11</strong><span>Engineers using shared iOS patterns</span></div>
+            <div class="fact"><strong>3D + HW</strong><span>Rendering and scanner integration</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="work" aria-labelledby="work-label">
+        <div class="section-label" id="work-label"><span>Selected projects</span><small>Public work across Apple platforms, spatial computing, and systems tooling</small></div>
+        <div class="projects">
+          <a class="project" href="https://github.com/KKodiac/ObjectCaptureApp" target="_blank" rel="noreferrer" aria-label="View ObjectCaptureApp on GitHub">
+            <div class="project-top"><span class="project-icon">✦</span><span class="project-arrow">↗</span></div>
+            <h3>ObjectCaptureApp</h3><p>An exploration of Apple’s Object Capture APIs for turning real-world spaces into detailed 3D models.</p><span class="meta">Swift · ARKit · ★ 45</span>
+          </a>
+          <a class="project" href="https://github.com/KKodiac/swift-cipher" target="_blank" rel="noreferrer" aria-label="View swift-cipher on GitHub">
+            <div class="project-top"><span class="project-icon">◈</span><span class="project-arrow">↗</span></div>
+            <h3>swift-cipher</h3><p>A SwiftData wrapper for SQLCipher that brings encrypted persistence to Apple platforms.</p><span class="meta">Swift · SwiftData · Security</span>
+          </a>
+          <a class="project" href="https://github.com/KKodiac/notetui" target="_blank" rel="noreferrer" aria-label="View notetui on GitHub">
+            <div class="project-top"><span class="project-icon">⌁</span><span class="project-arrow">↗</span></div>
+            <h3>notetui</h3><p>A fast Rust terminal note-taking app with Obsidian-style vaults and vim-inspired modal editing.</p><span class="meta">Rust · Terminal UI</span>
+          </a>
+          <a class="project" href="https://github.com/KKodiac/five-nine" target="_blank" rel="noreferrer" aria-label="View five-nine on GitHub">
+            <div class="project-top"><span class="project-icon">◌</span><span class="project-arrow">↗</span></div>
+            <h3>five-nine</h3><p>A live Rust dashboard for Atlassian Statuspage services, with uptime history and a playful airport animation.</p><span class="meta">Rust · Observability</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="skills-label">
+        <div class="section-label" id="skills-label">Core toolkit</div>
+        <div class="skills">
+          <div class="skill"><strong>Apple platforms</strong><span>iOS · iPadOS · macOS · UIKit</span></div>
+          <div class="skill"><strong>Architecture</strong><span>SwiftUI · TCA · Tuist · SPM</span></div>
+          <div class="skill"><strong>Quality</strong><span>XCTest · debugging · performance</span></div>
+          <div class="skill"><strong>Spatial &amp; systems</strong><span>ARKit · RealityKit · Swift/C++</span></div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="practice-label">
+        <div class="section-label" id="practice-label">Engineering practice</div>
+        <div class="practice-grid">
+          <article class="practice">
+            <span class="practice-number">01</span>
+            <h3>Design for change</h3>
+            <p>Use modular boundaries, Tuist, and clear state ownership to keep Apple-platform products adaptable as requirements evolve.</p>
+          </article>
+          <article class="practice">
+            <span class="practice-number">02</span>
+            <h3>Make hard systems usable</h3>
+            <p>Translate 3D rendering and scanner hardware capabilities into reliable Swift APIs and focused workflows for real users.</p>
+          </article>
+          <article class="practice">
+            <span class="practice-number">03</span>
+            <h3>Raise the team’s baseline</h3>
+            <p>Establish shared SwiftUI and TCA patterns, document decisions, and help a growing team build with consistent conventions.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="case-study-label">
+        <div class="section-label" id="case-study-label">Case study</div>
+        <div class="case-study">
+          <div>
+            <h2>Medit Link Express</h2>
+            <p class="case-study-intro">A production iPadOS dental workflow built around 3D scanning, patient management, and a growing multi-platform product surface.</p>
+          </div>
+          <div class="case-study-details">
+            <div><strong>My contribution</strong><span>Defined early app architecture and helped ship the team’s first iPadOS application.</span></div>
+            <div><strong>Technical challenge</strong><span>Exposed existing C++ rendering and intraoral-scanner capabilities through Swift interoperability.</span></div>
+            <div><strong>Product evolution</strong><span>Helped extend the iPadOS foundation toward a macOS release while preserving a multi-platform direction.</span></div>
+            <div><strong>Team impact</strong><span>Established shared TCA and SwiftUI patterns later used by an 11-person project team.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="background-label">
+        <div class="section-label" id="background-label">Background</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-date">May 2023 — Jan 2024</span>
+            <div><h3>Korea Deep Learning · Software Engineer</h3><p>Built backend services and internal tooling for Polyground, a 3D asset marketplace, using Kotlin and Spring.</p></div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">Feb 2023 — May 2023</span>
+            <div><h3>IKLAB · Software Engineer</h3><p>Maintained a mobile application developed in collaboration with a university research laboratory.</p></div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">2017 — 2023</span>
+            <div><h3>KoreaTech · B.S. Computer Engineering</h3><p>Built a foundation across software engineering, systems, and applied computer science.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="writing" aria-labelledby="writing-label">
+        <div class="section-label" id="writing-label"><span>Writing</span><small>Notes on systems and software engineering</small></div>
+        <div class="writing-list">
+          <a class="writing-card" href="https://kkodiac.github.io/Clean-Architecture-MVVM-iOS(2)/" target="_blank" rel="noreferrer"><div><h3>Clean Architecture &amp; MVVM in iOS</h3><p>Applying maintainable architecture patterns to Apple-platform applications.</p></div><span class="writing-date">Jan 2023 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/Clean-Architecture-MVVM-iOS/" target="_blank" rel="noreferrer"><div><h3>Clean Architecture &amp; MVVM in iOS</h3><p>A practical look at separating responsibilities in iOS application design.</p></div><span class="writing-date">Jan 2023 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/Memory-Management-Swift/" target="_blank" rel="noreferrer"><div><h3>Memory Management in Swift</h3><p>Notes on ownership, references, and building safer Swift applications.</p></div><span class="writing-date">Oct 2022 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/Redis-Pipeline/" target="_blank" rel="noreferrer"><div><h3>Pipelining in Redis</h3><p>A practical explanation of round trips, socket I/O, and why batching Redis commands can reduce overhead.</p></div><span class="writing-date">Sep 2022 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/Foaas-for-IOS/" target="_blank" rel="noreferrer"><div><h3>Building an iOS App with FOAAS</h3><p>Connecting a Swift application to a public API and shaping the result into a small product.</p></div><span class="writing-date">Apr 2022 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/Developing-MacOS-tool-with-Alamofire-copy/" target="_blank" rel="noreferrer"><div><h3>Developing a macOS Tool with Alamofire</h3><p>Exploring networking and utility app development on macOS.</p></div><span class="writing-date">Apr 2022 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/Data-Types-in-Swift1/" target="_blank" rel="noreferrer"><div><h3>Data Types in Swift</h3><p>A focused review of Swift’s core data types and language fundamentals.</p></div><span class="writing-date">Mar 2022 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/Clean-Architecture-for-SwiftUI/" target="_blank" rel="noreferrer"><div><h3>Clean Architecture for SwiftUI</h3><p>Thinking through boundaries and responsibilities in SwiftUI applications.</p></div><span class="writing-date">Mar 2022 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/stacklounge-%EA%B0%9C%EB%B0%9C%EA%B8%B0/" target="_blank" rel="noreferrer"><div><h3>StackLounge Development Notes</h3><p>A project journal covering the development of a community application.</p></div><span class="writing-date">Mar 2022 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/MVVM-in-SwiftUI/" target="_blank" rel="noreferrer"><div><h3>MVVM in SwiftUI</h3><p>Notes on applying the MVVM pattern while building SwiftUI interfaces.</p></div><span class="writing-date">Jan 2022 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/SQL-vs-NoSQL/" target="_blank" rel="noreferrer"><div><h3>SQL vs NoSQL</h3><p>A comparison of relational and non-relational database approaches.</p></div><span class="writing-date">Jan 2022 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/my-ubuntu-setup/" target="_blank" rel="noreferrer"><div><h3>My Ubuntu Setup</h3><p>A practical development environment and tooling setup.</p></div><span class="writing-date">Nov 2021 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/how-to-create-github-io-website/" target="_blank" rel="noreferrer"><div><h3>How to Create a GitHub.io Website</h3><p>Notes on publishing a personal site with GitHub Pages and Jekyll.</p></div><span class="writing-date">Nov 2021 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/how-to-start-programming/" target="_blank" rel="noreferrer"><div><h3>How to Start Programming</h3><p>Early notes on learning software development and building momentum.</p></div><span class="writing-date">Sep 2017 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/10-tips-to-improve-your-workflow/" target="_blank" rel="noreferrer"><div><h3>10 Tips to Improve Your Workflow</h3><p>Practical habits for a more focused and repeatable development process.</p></div><span class="writing-date">Sep 2017 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/conference-on-javascript/" target="_blank" rel="noreferrer"><div><h3>Conference on JavaScript</h3><p>Notes and takeaways from a JavaScript-focused developer conference.</p></div><span class="writing-date">Sep 2017 ↗</span></a>
+          <a class="writing-card" href="https://kkodiac.github.io/welcome-to-jekyll/" target="_blank" rel="noreferrer"><div><h3>Welcome to Jekyll</h3><p>The first post from the blog and its GitHub Pages publishing setup.</p></div><span class="writing-date">Apr 2017 ↗</span></a>
+        </div>
+      </section>
+
+      <section class="contact" aria-labelledby="contact-heading">
+        <div><h2 id="contact-heading">Have a hard problem to solve?</h2><p>I’m open to thoughtful teams building products with real-world impact.</p></div>
+        <a class="button primary" href="mailto:seongmin.hong.dev@gmail.com">seongmin.hong.dev@gmail.com ↗</a>
+      </section>
+      <footer>© 2026 Sean Hong · Built with Swift-minded attention to detail.</footer>
+    </div>
+    <script>
+      const root = document.documentElement;
+      const toggle = document.querySelector(".theme-toggle");
+      const icon = toggle.querySelector("span");
+      const savedTheme = localStorage.getItem("sean-theme");
+      if (savedTheme) root.dataset.theme = savedTheme;
+      function updateThemeButton() {
+        const dark = root.dataset.theme === "dark" || (!root.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
+        icon.textContent = dark ? "☀" : "☾";
+        toggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+      }
+      toggle.addEventListener("click", () => {
+        const dark = root.dataset.theme === "dark" || (!root.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
+        root.dataset.theme = dark ? "light" : "dark";
+        localStorage.setItem("sean-theme", root.dataset.theme);
+        updateThemeButton();
+      });
+      updateThemeButton();
+    </script>
+  </body>
+</html>
