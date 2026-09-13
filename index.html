@@ -159,6 +159,11 @@
       .practice-number { display: block; margin-bottom: 30px; color: var(--accent); font-size: 12px; font-weight: 800; }
       .practice h3 { margin: 0 0 8px; font-size: 16px; letter-spacing: -.02em; }
       .practice p { margin: 0; color: var(--muted); font-size: 13px; }
+      .exploration { display: grid; grid-template-columns: 1fr auto; gap: 26px; align-items: center; padding: 25px 28px; border: 1px dashed var(--accent); border-radius: 12px; background: var(--accent-soft); }
+      .exploration h2 { margin: 0 0 6px; font-size: 20px; letter-spacing: -.04em; }
+      .exploration p { max-width: 680px; margin: 0; color: var(--muted); font-size: 13px; }
+      .exploration-link { display: inline-flex; padding: 10px 14px; border: 1px solid var(--accent); border-radius: 8px; color: var(--accent); font-size: 12px; font-weight: 750; text-decoration: none; white-space: nowrap; }
+      .exploration-link:hover { background: var(--accent); color: #fff; }
       .case-study { display: grid; grid-template-columns: .65fr 1.35fr; gap: 38px; padding: 28px 30px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
       .case-study h2 { margin: 0 0 8px; font-size: 23px; letter-spacing: -.04em; }
       .case-study-intro { margin: 0; color: var(--muted); font-size: 13px; }
@@ -191,6 +196,7 @@
         .experience, .projects { grid-template-columns: 1fr; }
         .practice-grid { grid-template-columns: 1fr; }
         .case-study { grid-template-columns: 1fr; gap: 24px; }
+        .exploration { grid-template-columns: 1fr; gap: 18px; }
         .writing-card { grid-template-columns: 1fr; gap: 10px; }
         .skills { grid-template-columns: repeat(2, 1fr); }
         .contact { display: block; }
@@ -320,6 +326,17 @@
             <div><strong>Product evolution</strong><span>Helped extend the iPadOS foundation toward a macOS release while preserving a multi-platform direction.</span></div>
             <div><strong>Team impact</strong><span>Established shared TCA and SwiftUI patterns later used by an 11-person project team.</span></div>
           </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="exploration-label">
+        <div class="section-label" id="exploration-label">Next exploration</div>
+        <div class="exploration">
+          <div>
+            <h2>Signalspace · OpenBCI + BrainFlow</h2>
+            <p>A proposed iPadOS/macOS sensor dashboard exploring Swift/C++ interoperability, Bluetooth hardware, real-time signal visualization, and testable streaming architecture. This is an exploration, not a shipped project.</p>
+          </div>
+          <a class="exploration-link" href="https://github.com/brainflow-dev/brainflow" target="_blank" rel="noreferrer">Explore BrainFlow ↗</a>
         </div>
       </section>
 
